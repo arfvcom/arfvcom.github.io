@@ -40,6 +40,26 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+       var isNS = (navigator.appName == "PN") ? 1 : 0;
+       if(navigator.appName == "PN") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+       function mischandler(){
+       return false;
+       }
+       function mousehandler(e){
+       var myevent = (isNS) ? e : event;
+       var eventbutton = (isNS) ? myevent.which : myevent.button;
+       if((eventbutton==2)||(eventbutton==3)) return false;
+       }
+       document.oncontextmenu = mischandler;
+       document.onmousedown = mousehandler;
+       document.onmouseup = mousehandler;
+       </script>
+
+
 </head>
 <body class="home-v1">
 	<!-- Preloader Start -->
@@ -210,7 +230,7 @@
 				<div class="col-md-8">
 					<div class="contact-page-form">
 						<h2>Get in Touch</h2>	
-						<form action="send_mail.php" method="post">
+						<form id="submit-form" action="" method="">
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<div class="single-input-field">
 									<input type="text" placeholder="Your Name" name="name"/>
@@ -240,6 +260,27 @@
 								<input type="submit" value="Send Now" name="submit"/>
 							</div>													
 						</form>		
+
+						<script>
+							$("#submit-form").submit((e)=>{
+							e.preventDefault()
+							$.ajax({
+							url:"https://script.google.com/macros/s/AKfycby6MTK3KFbEUZ2yfjvmtA8z1mJ9t8iPPluudf76alVDAC2b3EzmkRerweop1jbl1mVYjQ/exec",
+							data:$("#submit-form").serialize(),
+							method:"post",
+							success:function (response){
+							alert("Our sales team will contact you shortly. Thank you!")
+							window.location.reload()
+							//window.location.href="https://google.com"
+							},
+							error:function (err){
+							alert("Something Error")
+							
+							}
+							})
+							})
+							</script>
+
 					</div>				
 				</div>
 				<div class="col-md-4">				
