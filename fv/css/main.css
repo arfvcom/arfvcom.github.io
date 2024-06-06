@@ -165,7 +165,7 @@ textarea:focus, input:focus{
 #preloader-status {
     height: 210px;
 	width: 210px;
-    background: url(../img/preloader.gif);
+    background: url(../img/favicon.ico);
     background-repeat: no-repeat;
     background-position: center;
     margin: -100px 0 0 -100px;
